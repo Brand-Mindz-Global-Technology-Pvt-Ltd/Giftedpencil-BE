@@ -9,6 +9,8 @@ const pool = mysql.createPool({
   password: process.env.DB_PASSWORD || '',
   database: process.env.DB_NAME || 'gifted_pencil',
   port: Number(process.env.DB_PORT) || 3306,
+  ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : undefined,
+  connectTimeout: Number(process.env.DB_CONNECT_TIMEOUT) || 10000,
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0
